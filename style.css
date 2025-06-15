@@ -1,0 +1,181 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('../fonts/DancingScript-Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('../fonts/DancingScript-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+#background{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: -1;
+}
+#welcome-box{
+    border-radius: 30% 70% 70% 30% / 30% 51% 49% 70% ; 
+    background-color: aliceblue;  
+    width: 500px; 
+    height: 400px;
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    opacity: 0;
+    transition: all 1s ease-in;
+    text-align: center;
+    padding: 70px;
+}
+h1{
+    font-family: 'Dancing Script', cursive;
+}
+div p{
+    margin: 20px;
+}
+a{
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    background-color: aqua;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: all 0.4s ease-in;
+}
+a:hover{
+    transform: translateY(-8px);
+}
+#library{
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100vh);
+    align-items: center;
+    padding: 10px;
+}
+#books{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 50px;
+    justify-content: center;
+}
+.book {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 400px;
+    background-color: #c5a880;  
+    border: 2px solid #8b6d4a; 
+    border-radius: 4px;
+    box-sizing: border-box;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}   
+.book::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 10px;
+    height: 380px;
+    background-color: #f0e6d2;
+    border-radius: 0 3px 3px 0;
+    box-sizing: border-box;
+}
+#add {
+    background-color: #28a745;  
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#add:hover {
+    background-color: #218838; 
+}
+
+#dell-all {
+    background-color: #dc3545; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#dell-all:hover {
+    background-color: #a20212; 
+}
+.icon{
+    height: 50px;
+    width: 50px;
+}
+.del{
+    width: 100px;
+    height: 70px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: sans-serif;
+    user-select: none;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.toggle {
+    width: 60px;
+    height: 30px;
+    background-color: red;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-circle {
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s ease;
+}
+
+/* Active state */
+.toggle.active {
+    background-color: #4cd137;
+}
+
+.toggle.active .toggle-circle {
+    left: 32px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>My Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <img src="image_2025-06-15_164220876.png" alt="background image" id="background">
+    <div id="welcome-box">
+        <h1>Your Personal Digital Bookshelf</h1>
+        <p>Easily track, organize, and manage your entire book collection. Access your library anytime, from any device.</p>
+        <a href="#library">Get Started</a>
+    </div>
+    <div id="library">
+        <div class="controlls">
+            <button id="add">New</button>
+            <button id="dell-all">Clear all</button>
+        </div>
+        <div id="books">
+            <div class="book">
+                <h1>The Hobbit</h1>
+                <div class="toggle-wrapper">
+                    <div class="label" id="toggleLabel">Unread</div>
+                    <div class="toggle" id="myToggle">
+                        <div class="toggle-circle"></div>
+                    </div>
+                </div>
+                <button class="del"><img src="icons/closed-trash.png" alt="trashcan" class="icon"></button>
+                <span>J.R.R. Tolkien 295 pages</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
