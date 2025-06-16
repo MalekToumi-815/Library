@@ -171,7 +171,6 @@ a:hover{
     transition: left 0.3s ease;
 }
 
-/* Active state */
 .toggle.active {
     background-color: #4cd137;
 }
