@@ -9,6 +9,51 @@ document.addEventListener('DOMContentLoaded', function() {
 const books = document.querySelector("#books")
 let library = []
 
+//book events
+books.addEventListener("click", (e) => {
+    const delBtn = e.target.closest(".del");
+    const toggle = e.target.closest(".toggle");
+
+    // Delete button
+    if (delBtn) {
+        const bookDiv = delBtn.closest(".book");
+        const bookId = bookDiv.dataset.id;
+        const index = library.findIndex(book => book.id === bookId);
+        if (index !== -1) {
+            library.splice(index, 1);
+            display();
+        }
+    }
+
+    // Toggle switch
+    if (toggle) {
+        toggle.classList.toggle("active");
+        const bookDiv = toggle.closest(".book");
+        const bookId = bookDiv.dataset.id;
+        const book = library.find(book => book.id === bookId)
+        const label = toggle.previousElementSibling;
+        label.textContent = toggle.classList.contains("active") ? "Read" : "Unread";
+        book.read = toggle.classList.contains("active") 
+        console.log(book)
+    }
+});
+
+books.addEventListener("mouseover", (e) => {
+    const delBtn = e.target.closest(".del");
+    if (delBtn) {
+        delBtn.style.backgroundColor = "red";
+        delBtn.innerHTML = '<img src="icons/open-trash.png" alt="trashcan" class="icon">';
+    }
+});
+
+books.addEventListener("mouseout", (e) => {
+    const delBtn = e.target.closest(".del");
+    if (delBtn) {
+        delBtn.style.backgroundColor = "white";
+        delBtn.innerHTML = '<img src="icons/closed-trash.png" alt="trashcan" class="icon">';
+    }
+});
+
 function Book(title,author,pages){
     this.id = crypto.randomUUID()
     this.title = title
@@ -24,8 +69,9 @@ function addBooktoLibrary(title,author,pages){
 
 function display(){
     books.innerHTML = ""
+    html = ""
     library.forEach(book => {
-        let html = `
+        html += `
                 <div class="book" data-id="${book.id}">
                     <h1>${book.title}</h1>
                     <div class="toggle-wrapper">
@@ -40,40 +86,8 @@ function display(){
                     <span>${book.author} ${book.pages} pages</span>
                 </div>
             `;
-        books.innerHTML += html
-        //delete buttons
-        const del_buttons = document.querySelectorAll(".del")
-
-        del_buttons.forEach(btn => {
-            btn.addEventListener("mouseover",() => {
-                btn.style.backgroundColor = "red"
-                btn.innerHTML = '<img src="icons/open-trash.png" alt="trashcan" class="icon">'
-            })
-            btn.addEventListener("mouseout",() => {
-                btn.style.backgroundColor = "white"
-                btn.innerHTML = '<img src="icons/closed-trash.png" alt="trashcan" class="icon">'
-            })
-            btn.addEventListener("click", () => {
-                let delbook = btn.parentElement; 
-                delbook.remove();
-                const bookId = delbook.dataset.id;
-                const index = library.findIndex(book => book.id === bookId);
-                if (index !== -1) {
-                    library.splice(index, 1);
-                }
-            })
-        })
-        //Toggle movement
-        const toggles = document.querySelectorAll(".toggle");
-
-        toggles.forEach(toggle => {
-            toggle.addEventListener("click", () => {
-                let label = toggle.previousElementSibling;
-                toggle.classList.toggle("active");
-                label.textContent = toggle.classList.contains("active") ? "Read" : "Unread";
-        });
-        })
     })
+    books.innerHTML = html
 }
 
 //new and clear buttons logic
