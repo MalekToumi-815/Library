@@ -16,6 +16,7 @@ books.addEventListener("click", (e) => {
 
     // Delete button
     if (delBtn) {
+        const start = performance.now();
         const bookDiv = delBtn.closest(".book");
         const bookId = bookDiv.dataset.id;
         const index = library.findIndex(book => book.id === bookId);
@@ -23,6 +24,8 @@ books.addEventListener("click", (e) => {
             library.splice(index, 1);
             display();
         }
+        const end = performance.now(); // End timer
+    console.log(`⏱️ Deletion took ${end - start}ms`);
     }
 
     // Toggle switch
@@ -38,21 +41,7 @@ books.addEventListener("click", (e) => {
     }
 });
 
-books.addEventListener("mouseover", (e) => {
-    const delBtn = e.target.closest(".del");
-    if (delBtn) {
-        delBtn.style.backgroundColor = "red";
-        delBtn.innerHTML = '<img src="icons/open-trash.png" alt="trashcan" class="icon">';
-    }
-});
 
-books.addEventListener("mouseout", (e) => {
-    const delBtn = e.target.closest(".del");
-    if (delBtn) {
-        delBtn.style.backgroundColor = "white";
-        delBtn.innerHTML = '<img src="icons/closed-trash.png" alt="trashcan" class="icon">';
-    }
-});
 
 function Book(title,author,pages){
     this.id = crypto.randomUUID()
@@ -69,7 +58,7 @@ function addBooktoLibrary(title,author,pages){
 
 function display(){
     books.innerHTML = ""
-    html = ""
+    let html = ""
     library.forEach(book => {
         html += `
                 <div class="book" data-id="${book.id}">
@@ -80,9 +69,7 @@ function display(){
                             <div class="toggle-circle"></div>
                         </div>
                     </div>
-                    <button class="del">
-                        <img src="icons/closed-trash.png" alt="trashcan" class="icon">
-                    </button>
+                    <button class="del"></button>
                     <span>${book.author} ${book.pages} pages</span>
                 </div>
             `;
@@ -111,9 +98,9 @@ add_button.addEventListener("click",() => {
         titleInput.value = "";
         authorInput.value = "";
         pagesInput.value = "";
-        alert("✅ Book added successfully")
+        //alert("✅ Book added successfully")
     }
     else{
-        alert("❌ Error: Invalid input")
+        //alert("❌ Error: Invalid input")
     }
 })

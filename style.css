@@ -136,7 +136,15 @@ a:hover{
     width: 100px;
     height: 70px;
     border-radius: 20px;
+    background-image: url("icons/closed-trash.png");
     transition: background-color 0.3s ease;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.del:hover{
+    background-image: url("icons/open-trash.png");
+    background-color: red;
 }
 .toggle-wrapper {
     display: flex;
