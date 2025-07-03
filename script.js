@@ -42,14 +42,22 @@ books.addEventListener("click", (e) => {
 });
 
 
-
-function Book(title,author,pages){
+class Book {
+    constructor (title,author,pages){
+        this.id = crypto.randomUUID()
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = false
+    }
+}
+/*function Book(title,author,pages){
     this.id = crypto.randomUUID()
     this.title = title
     this.author = author
     this.pages = pages
     this.read = false
-}
+}*/
 
 function addBooktoLibrary(title,author,pages){
     let newbook = new Book(title,author,pages)
